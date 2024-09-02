@@ -8,6 +8,8 @@ RUN --mount=type=bind,from=ksmanis/gentoo-distcc:tcp,source=/var/cache/binpkgs,t
     emerge --info; \
     emerge distcc; \
     distcc --version; \
+    emerge ccache; \
+    ccache --version; \
     emerge --oneshot gentoolkit; \
     eclean packages; \
     CLEAN_DELAY=0 emerge --depclean gentoolkit; \

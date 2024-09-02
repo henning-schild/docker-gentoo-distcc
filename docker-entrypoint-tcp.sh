@@ -6,6 +6,10 @@ set -e
 # * if hyphenated flag arguments (e.g., '-f', '-foo', or '--foo') were
 #   passed to the Docker command line
 if [ "$#" -eq 0 ] || [ "${1#-}" != "$1" ]; then
+    export CCACHE_DIR="/var/cache/ccache"
+    if [ -f "$CCACHE_DIR/ccache.conf" ]; then
+        export PATH="/usr/lib/ccache/bin:$PATH"
+    fi
     exec distccd --daemon --no-detach --log-level notice --log-stderr --allow-private "$@"
 fi
 
