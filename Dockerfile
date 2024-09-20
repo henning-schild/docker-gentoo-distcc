@@ -4,8 +4,7 @@ RUN --mount=type=bind,from=ksmanis/gentoo-distcc:tcp,source=/var/cache/binpkgs,t
     --mount=type=bind,from=ksmanis/portage,source=/var/db/repos/gentoo,target=/var/db/repos/gentoo \
     set -eux; \
     cp -av /cache/. /var/cache/binpkgs; \
-    export EMERGE_DEFAULT_OPTS="--buildpkg --color=y --quiet-build --tree --usepkg --verbose --getbinpkg"; \
-    export FEATURES="binpkg-request-signature"; \
+    export EMERGE_DEFAULT_OPTS="--buildpkg --color=y --quiet-build --tree --usepkg --verbose"; \
     emerge --info; \
     emerge distcc ccache gentoolkit; \
     emerge --deselect gentoolkit; \
