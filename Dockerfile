@@ -7,11 +7,10 @@ RUN --mount=type=bind,from=ksmanis/gentoo-distcc:tcp,source=/var/cache/binpkgs,t
     export EMERGE_DEFAULT_OPTS="--buildpkg --color=y --quiet-build --tree --usepkg --verbose --getbinpkg"; \
     export FEATURES="binpkg-request-signature"; \
     emerge --info; \
-    emerge distcc; \
+    emerge distcc ccache gentoolkit; \
+    emerge --deselect gentoolkit; \
     distcc --version; \
-    emerge ccache; \
     ccache --version; \
-    emerge --oneshot gentoolkit; \
     eclean packages; \
     CLEAN_DELAY=0 emerge --depclean gentoolkit; \
     find /var/cache/distfiles/ -mindepth 1 -delete -print
